@@ -1,4 +1,6 @@
 # Tindev
-Aplicação Tindev (Um tinder para programadores :D) 
+Tindev Application (A tinder for programmers :D)
 
-Projeto criado para fins de estudo de React, Node e API's Rest com base no curso da RocktSeat.
+Project designed for React, Node and API's Rest study. Based on the RocktSeat course.
+
+In process of improvement...
