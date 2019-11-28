@@ -6,7 +6,7 @@ const rotas = require('./routes');
 
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {origins: '*'});
 
 const usuariosConectados = {};
 
@@ -27,14 +27,6 @@ app.use((req, res, next) => {
 });7
 
 app.use(cors());
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-
 app.use(express.json());
 app.use(rotas);
 
