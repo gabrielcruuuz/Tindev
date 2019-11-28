@@ -24,9 +24,10 @@ app.use((req, res, next) => {
     req.usuariosConectados = usuariosConectados;
 
     return next();
-});
+});7
 
 app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 app.use(rotas);
 
