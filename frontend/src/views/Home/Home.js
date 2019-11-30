@@ -1,13 +1,13 @@
 import React, {useEffect , useState} from 'react';
 import io from 'socket.io-client';
-import api from '../services/Api';
+import api from '../../services/Api';
 import {Link} from 'react-router-dom';
 
-import '../assets/css/Index.css';
-import logo from '../assets/images/logo.svg';
-import like from '../assets/images/like.svg';
-import dislike from '../assets/images/dislike.svg';
-import itsamatch from '../assets/images/itsamatch.png';
+import './Index.css';
+import logo from '../../assets/images/logo.svg';
+import like from '../../assets/images/like.svg';
+import dislike from '../../assets/images/dislike.svg';
+import itsamatch from '../../assets/images/itsamatch.png';
 
 export default function Index(props){ 
     const _id = props.match.params.id

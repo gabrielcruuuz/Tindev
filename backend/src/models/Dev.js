@@ -5,11 +5,17 @@ const DevSchema = new Schema({
         type: String,
         required: true,
     },
+    email: {
+        type: String,
+        required: true,
+    },
+    senha: {
+        type: String,
+        required: true,
+    },
     usuarioGit: {
         type: String,
-        require: true,
     },
-
     bio : {
         type: String,
     },

@@ -1,7 +1,7 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 
-import Login from './pages/Login';
-import Home from './pages/Home';
+import Login from './views/Login';
+import Home from './views/Home';
 
 export default createAppContainer(
     createSwitchNavigator({

@@ -17,27 +17,7 @@ module.exports = {
         return res.json(listaUsuarios);
     },
 
-   async store(req, res){
-        const {usuariogit} = req.body;
-        const usuarioExiste = await Dev.findOne( {usuarioGit : usuariogit});
-        
-        if(usuarioExiste){
-            return res.json(usuarioExiste); 
-        }
-
-        const responseGit = await axios.get(`https://api.github.com/users/${usuariogit}`);
-
-        console.log(responseGit.data);
-
-        const {name, login, bio, avatar_url} = responseGit.data;
-
-        const dev = await Dev.create({
-            nome:  name,
-            usuarioGit: login,
-            bio: bio,
-            avatar: avatar_url
-        })
-
-        return res.json({menssagem : 'dev cadastrado com sucesso!'});
+    async RegisterDev(req, res){
+       
     }
 }
