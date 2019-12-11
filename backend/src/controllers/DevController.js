@@ -17,7 +17,31 @@ module.exports = {
         return res.json(listaUsuarios);
     },
 
-    async RegisterDev(req, res){
+    async RegisterDev(req, res)
+    {
+       const {novoUsuario} = req.body;
+
+       const UsuarioExiste = await Dev.findOne({ email: novoUsuario.email });
+
+       if(UsuarioExiste)
+            return res.status(400).send({
+                mensagem: 'email já cadastrado',
+                errorCode: 1
+            });
        
+       else{
+            const {email, senha, nome, sobrenome, bio, avatar} = novoUsuario;
+
+            const dev = await Dev.create({
+                email: email,
+                senha: senha,
+                nome:  nome,
+                sobrenome: sobrenome,
+                bio: bio,
+                avatar: avatar
+            });
+
+            return res.status(200).send({mensagem: 'usuario cadastrado com sucesso'});
+        }
     }
 }

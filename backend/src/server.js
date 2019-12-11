@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     req.usuariosConectados = usuariosConectados;
 
     return next();
-});7
+});
 
 app.use(express.json());
 app.use(rotas);

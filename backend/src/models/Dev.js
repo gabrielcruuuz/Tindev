@@ -5,6 +5,10 @@ const DevSchema = new Schema({
         type: String,
         required: true,
     },
+    sobrenome: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
@@ -16,7 +20,7 @@ const DevSchema = new Schema({
     usuarioGit: {
         type: String,
     },
-    bio : {
+    bio: {
         type: String,
     },
     avatar: {

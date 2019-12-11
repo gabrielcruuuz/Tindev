@@ -88,7 +88,8 @@
 }
 
 .login-container form button{
-    margin-top: 10px;
+    margin-top:25px;
+    width: 98%;
     border: 0;
     border-radius: 4px;
     height: 48px;
@@ -97,6 +98,14 @@
     font-weight: bold;
     color: #FFF;
     cursor: pointer;
+    transition-duration: .5s;
+}
+
+.login-container form button:hover{
+    color:rgb(0, 0, 0);
+    background-color: #FFF;
+    border: 2px solid #DF4723;
+    border-radius: 4px;
 }
 
 .login-container span {

@@ -3,27 +3,18 @@ const Dev = require ('../models/Dev');
 
 module.exports = {
    async SubmitLogin(req, res){
-        const {emailUsuario} = req.body;
+        const {emailUsuario, senhaUsuario} = req.body;
 
-        const usuarioExiste = await Dev.findOne( {email : emailUsuario});
-    
+        const usuarioExiste = await Dev.findOne({
+            email: emailUsuario,
+            senha: senhaUsuario
+        });
+
         if(usuarioExiste){
-            return res.json(usuarioExiste); 
+            return res.json(usuarioExiste);
         }
-
-        // const responseGit = await axios.get(`https://api.github.com/users/${usuariogit}`);
-
-        // console.log(responseGit.data);
-
-        // const {name, login, bio, avatar_url} = responseGit.data;
-
-        // const dev = await Dev.create({
-        //     nome:  name,
-        //     usuarioGit: login,
-        //     bio: bio,
-        //     avatar: avatar_url
-        // })
-
-        return res.json({menssagem : 'email ou senha incorretos!'});
+        else{
+            return res.status(400).send({mensagem : 'email ou senha incorretos!'});
+        }
     }
 }

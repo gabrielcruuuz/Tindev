@@ -1,25 +1,36 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
+import TextField from '@material-ui/core/TextField';
+
 import api from '../../services/Api';
-
 import './Login.css';
-
 import logo from '../../assets/images/logo.svg';
 
 export default function Login(props){
+
     const [ email , setEmail ]= useState('');
+    const [ senha , setSenha ]= useState('');
+    const [ errorLogin , setErrorLogin ]= useState('');
 
     async function handlerSubmit(e){
-        // IMPEDE A PAGINA DE SER RECARREGADA PELO SUBMIT DO FORM
         e.preventDefault();
 
-        const response = await api.post('/login', {
-            emailUsuario: email,
-        });
+        try{
+            const response = await api.post('/login', {
+                emailUsuario: email,
+                senhaUsuario: senha,
+            });
 
-        const { _id } = response.data;
+            console.log(response.data);
 
-        props.history.push(`/dev/${_id}`);
+            const { _id } = response.data;
+    
+            props.history.push(`/dev/${_id}`);
+        }
+        catch (error){
+            const {mensagem} = error.response.data;
+            setErrorLogin(mensagem);
+        }        
     }
 
     return (
@@ -35,16 +46,30 @@ export default function Login(props){
             </div>
 
             <form onSubmit = {handlerSubmit}>
-                <input  
+                <TextField
+                    required  
                     placeholder="Digite seu email"
+                    type="email"
+                    name="email"
+                    required
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                 />
+                <TextField
+                    required  
+                    placeholder="senha"
+                    type="password"
+                    name="senha"
+                    required
+                    value={senha}
+                    onChange={e => setSenha(e.target.value)}
+                />
+                <span>{errorLogin}</span>
                 <button type="submit">Entrar</button>
             </form>
 
             <span>Ainda não tem conta?
-                <Link to="/register"> Registre-se</Link>
+                <Link to="/register"> Cadastre-se</Link>
             </span>
         </div>
     );
