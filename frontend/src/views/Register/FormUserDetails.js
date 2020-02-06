@@ -22,20 +22,20 @@ export class FormUserDetails extends Component{
     }
 
     VerifyInputs = () => {
-        const {email, senha, nome, sobrenome} = this.props.values;
-        const inputs = {email, senha, nome, sobrenome};
+        const {email, senha, nome} = this.props.values;
+        const inputs = {email, senha, nome};
         const {changeFormError} = this.props;
         let mensagem = '';
 
         Object.keys(inputs).forEach(val => {
-            if(inputs[val] == '')
+            if(inputs[val] ==='')
             {
                 mensagem = 'campo obrigatorio';
-                this.props.changeFormError(val, mensagem);
+                changeFormError(val, mensagem);
             }          
             else{
                 mensagem = '';
-                this.props.changeFormError(val, mensagem);
+                changeFormError(val, mensagem);
             } 
         });   
     }
@@ -51,25 +51,15 @@ export class FormUserDetails extends Component{
                     <form className={classes.root}>
                     <TextField
                             required
+                            fullWidth
                             onChange={handleInputChange}
                             name="nome"
                             id="nome"
-                            label="Nome"
+                            label="Nome completo"
                             margin="normal"
                             error ={values.formErrors.nome.length === 0 ? false : true }
                             helperText={values.formErrors.nome}
                             defaultValue={values.nome}
-                        />
-                        <TextField
-                            required
-                            onChange={handleInputChange}
-                            name="sobrenome"
-                            id="sobrenome"
-                            label="Sobrenome"
-                            margin="normal"
-                            error ={values.formErrors.sobrenome.length === 0 ? false : true }
-                            helperText={values.formErrors.sobrenome}
-                            defaultValue={values.sobrenome}
                         />
                         <br />
                         <TextField
@@ -106,7 +96,7 @@ export class FormUserDetails extends Component{
                         </button>
                     </form>
                     <span>Já tem uma conta?
-                        <Link to="/">Logar</Link>
+                        <Link to="/"> Logar</Link>
                     </span>
                 </div>
             </div>

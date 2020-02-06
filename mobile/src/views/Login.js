@@ -11,9 +11,6 @@ export default function Login({ navigation }){
         const response = await api.post('/devs', {usuarioGit : usuario});
 
         const {_id} = response.data;
-
-        console.log(_id);
-
         navigation.navigate('Home', { _id });
     }
 

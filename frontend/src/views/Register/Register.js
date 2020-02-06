@@ -9,14 +9,12 @@ export class Register extends Component{
         email: "",
         senha: "",
         nome: "",
-        sobrenome: "",
         bio: "",
         avatar: null,
         formErrors: {
             email: "",
             senha: "",
             nome: "",
-            sobrenome: ""
         }
     }
 
@@ -91,8 +89,6 @@ export class Register extends Component{
     }
 
     changeStep = (step) => {
-        this.state.step = step;
-
         this.setState({
             step: step
         })
@@ -107,13 +103,12 @@ export class Register extends Component{
                 email: this.state.email,
                 senha: this.state.senha,
                 nome: this.state.nome,
-                sobrenome: this.state.sobrenome,
                 bio: this.state.bio,
                 avatar: this.state.avatar
             }
             try{
                 const response = await api.post('/register', {
-                    novoUsuario: novoUsuario,
+                    novoUsuario: novoUsuario
                 });
 
                 const {status} = response;
@@ -122,17 +117,21 @@ export class Register extends Component{
             }
             catch (error){
                 const {mensagem, errorCode} = error.response.data;
-                console.log(error.response.data);
                 switch(errorCode)
                 {
                     case 1: 
                         this.changeFormError("email", mensagem);
                         this.changeStep(1);
+                        break;
+
+                    default:
+                        this.changeFormError("email", "");
+                        break;
                 }
             }        
         }
         else
-            console.log('formulário invalido');
+            alert('formulário invalido');
     }
 
     formValid = () => {
@@ -148,9 +147,8 @@ export class Register extends Component{
     }
 
     render(){
-        const {step} = this.state;
-        const {email, senha, nome, sobrenome, bio, avatar, formErrors} = this.state;
-        const values = {email, senha, nome, sobrenome, bio, avatar, formErrors}
+        const {email, senha, nome, bio, avatar, formErrors} = this.state;
+        const values = {email, senha, nome, bio, avatar, formErrors}
 
         switch(this.state.step){
             case 1:
@@ -162,8 +160,7 @@ export class Register extends Component{
                         values = {values}
                     />
                 )
-            break;
-            case 2:
+            default:
                 return (
                     <FormUserPerfil
                         prevStep= {this.prevStep}
@@ -173,7 +170,6 @@ export class Register extends Component{
                         handleSubmit = {this.handleSubmit}
                     />
                 )
-            break;
         }
     }
 }

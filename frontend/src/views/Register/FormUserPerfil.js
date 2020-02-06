@@ -52,6 +52,7 @@ export class FormUserPerfil extends Component{
                                 />  
                                 <img
                                  className="img-avatar"
+                                 alt="avatar"
                                  src={values.avatar} />
                             </div>
                             <button 

@@ -5,10 +5,6 @@ const DevSchema = new Schema({
         type: String,
         required: true,
     },
-    sobrenome: {
-        type: String,
-        required: true,
-    },
     email: {
         type: String,
         required: true,
@@ -31,6 +27,10 @@ const DevSchema = new Schema({
         ref: 'Dev',
     }],
     dislikes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Dev', 
+    }],
+    matchs: [{
         type: Schema.Types.ObjectId,
         ref: 'Dev',
     }]
