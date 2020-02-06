@@ -18,34 +18,52 @@
     text-align: center;
 }
 
-.login-terceiros a{
-    display: block;
-    border-radius: 200px;
-    color: #FFF !important;
-    padding: 16px 48px 18px;
-    font-size: 14px;
-    line-height: 1;
-    transition-duration: .3s;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+.login-terceiros .loginBtn {
+    position: relative;
+    margin: 0.2em;
+    padding: 5px 15px 5px 46px;
+    text-align: left;
+    line-height: 34px;
+    white-space: nowrap;
+    border-radius: 0.3em;
+    font-size: 18px;
+    color: #FFF;
     cursor: pointer;
-    margin-top: 20px;
+    transition-duration: .5s;
 }
 
-.login-terceiros .btn-facebook{
-    background-color: #3b5998;
+.login-terceiros .loginBtn:before {
+    content: "";
+    position: absolute;
+    top: 5;
+    left: 0;
+    width: 34px;
+    height: 89%;
+ }
+
+.login-terceiros .loginBtn-facebook {
+    background-image: linear-gradient(#4C69BA, #3B55A0);
 }
 
-.login-terceiros .btn-facebook:hover{
-    background-color:rgb(47, 108, 151);
+.login-terceiros .loginBtn-facebook:before {
+    border-right: #364e92 1px solid;
+    background: url('../../assets/images/icon_facebook.png') 6px 6px no-repeat;
 }
 
-.login-terceiros .btn-github{
-    background-color:rgb(25, 25, 26);
+.login-terceiros .loginBtn-facebook:hover {
+    background-image: linear-gradient(#5B7BD5, #4864B1);
 }
 
-.login-terceiros .btn-github:hover{
-    background-color: #3b3d41;
+.login-terceiros .loginBtn-github{
+    background: linear-gradient(#252525 , #292929);
+}
+
+.login-terceiros .loginBtn-github:hover{
+    background: linear-gradient(#3b3b3b, #525151);
+}
+
+.login-terceiros .loginBtn-github:before{
+    /* background: url('../../assets/images/icon_facebook.png') 6px 6px no-repeat; */
 }
 
 .divider{
@@ -118,4 +136,3 @@
     color: black;
     font-weight: bold;
  }
- 

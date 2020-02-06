@@ -1,10 +1,13 @@
 const Dev = require('../models/Dev');
+const {DecrypToken} = require ('./AuthController');
 
 module.exports = {
     async store(req, res){
          const {devId} = req.params;
-         const {idusuariologado} = req.headers;
-         const usuarioLogado = await Dev.findById(idusuariologado);
+         const { token } = req.headers;
+
+         const {idUsuarioLogado} = DecrypToken(token);
+         const usuarioLogado = await Dev.findById(idUsuarioLogado);
          const usuarioAlvo = await Dev.findById(devId);
 
          if(!usuarioAlvo){
@@ -12,8 +15,13 @@ module.exports = {
          }
 
          if(usuarioAlvo.likes.includes(usuarioLogado._id)){
-            const socketLogado = req.usuariosConectados[idusuariologado];
+            const socketLogado = req.usuariosConectados[idUsuarioLogado];
             const socketAlvo = req.usuariosConectados[devId];
+
+            usuarioLogado.likes.push(usuarioAlvo._id);
+
+            usuarioLogado.matchs.push(usuarioAlvo._id);
+            usuarioAlvo.matchs.push(usuarioLogado._id);
             
             if(socketLogado){
                 req.io.to(socketLogado).emit('match', usuarioAlvo);
@@ -28,6 +36,7 @@ module.exports = {
 
         //  ATUALIZA A LISTA DE LIKES DO USUARIO LOGADO
          await usuarioLogado.save();
+         await usuarioAlvo.save();
 
          return res.json(usuarioLogado)
     }

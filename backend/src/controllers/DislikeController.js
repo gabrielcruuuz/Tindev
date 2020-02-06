@@ -1,11 +1,13 @@
 const Dev = require('../models/Dev');
+const {DecrypToken} = require ('./AuthController');
 
 module.exports = {
     async store(req, res){
          const {devId} = req.params;
-         const {idusuariologado} = req.headers;
+         const { token } = req.headers;
 
-         const usuarioLogado = await Dev.findById(idusuariologado);
+         const {idUsuarioLogado} = DecrypToken(token);
+         const usuarioLogado = await Dev.findById(idUsuarioLogado);
          const usuarioAlvo = await Dev.findById(devId);
 
          if(!usuarioAlvo){
