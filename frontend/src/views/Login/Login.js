@@ -7,7 +7,6 @@ import api from '../../services/Api';
 import { loginToken } from "../../services/Auth";
 import './Login.css';
 import logo from '../../assets/images/logo.svg';
-import Axios from 'axios';
 
 export default function Login(props){
     const [ email , setEmail ]= useState('');
